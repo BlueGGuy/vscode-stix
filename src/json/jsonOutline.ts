@@ -16,9 +16,9 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 		vscode.window.onDidChangeActiveTextEditor(() => this.onActiveEditorChanged());
 		vscode.workspace.onDidChangeTextDocument(e => this.onDocumentChanged(e));
 		this.parseTree();
-		this.autoRefresh = vscode.workspace.getConfiguration('JSON-zain.json').get('autorefresh');
+		this.autoRefresh = vscode.workspace.getConfiguration('JSON-stix.json').get('autorefresh');
 		vscode.workspace.onDidChangeConfiguration(() => {
-			this.autoRefresh = vscode.workspace.getConfiguration('JSON-zain.json').get('autorefresh');
+			this.autoRefresh = vscode.workspace.getConfiguration('JSON-stix.json').get('autorefresh');
 		});
 		this.onActiveEditorChanged();
 	}

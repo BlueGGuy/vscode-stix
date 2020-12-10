@@ -1,9 +1,9 @@
 {
-	"name": "json",
-	"displayName": "json",
+	"name": "stix",
+	"displayName": "stix",
 	"description": "Stix for Visual Studio Code",
 	"version": "2.0.2",
-	"publisher": "Matthew Green",
+	"publisher": "mattgreen",
 	"homepage": "https://github.com/ZainChen/vscode-json#readme",
 	"bugs": {
 		"url": "https://github.com/ZainChen/vscode-json/issues"
