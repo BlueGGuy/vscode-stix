@@ -1,9 +1,9 @@
 {
 	"name": "json",
 	"displayName": "json",
-	"description": "Json for Visual Studio Code",
+	"description": "Stix for Visual Studio Code",
 	"version": "2.0.2",
-	"publisher": "ZainChen",
+	"publisher": "Matthew Green",
 	"homepage": "https://github.com/ZainChen/vscode-json#readme",
 	"bugs": {
 		"url": "https://github.com/ZainChen/vscode-json/issues"
@@ -13,58 +13,16 @@
 		"url": "https://github.com/ZainChen/vscode-json"
 	},
 	"license": "MIT",
-	"author": "ZainChen <2384439266@qq.com>",
+	"author": "Matthew Green",
 	"icon": "resources/json-128.png",
 	"categories": [
 		"Extension Packs",
 		"Other"
 	],
 	"keywords": [
-		"zain",
-		"ZainChen",
-		"银",
-		"志银",
-		"陈志银",
-		"陈志振",
 		"json",
-		"html",
-		"css",
-		"javascript",
-		"nodejs",
-		"github",
-		"gitlab",
-		"git",
-		"c",
-		"C++",
-		"web",
-		"js",
-		"npm",
-		"python",
-		"java",
-		"Ruby",
-		"webpack",
-		"php",
-		"mysql",
-		"sql",
-		"apache",
-		"nginx",
-		"iis",
-		"wordpress",
-		"hexo",
-		"tencent",
-		"linux",
-		"window",
-		"mac",
-		"vs",
-		"google",
-		"markdown",
-		"xml",
-		"run",
-		"commands",
-		"view",
-		"diff",
-		"tree",
-		"compare"
+		"stix",
+		"bundle"
 	],
 	"engines": {
 		"vscode": "^1.46.0"
@@ -76,6 +34,13 @@
 		"onLanguage:json"
 	],
 	"contributes": {
+		"jsonValidation":
+			[
+				{
+					"fileMatch": "*.stix.json",
+					"url": "./resources/schemas/common/bundle.json"
+				}
+			],
 		"viewsContainers": {
 			"activitybar": [
 				{
@@ -174,10 +139,10 @@
 	"devDependencies": {
 		"@types/node": "^12.12.0",
 		"@types/vscode": "^1.45.0",
-		"typescript": "^3.9.4",
 		"@typescript-eslint/eslint-plugin": "^3.0.2",
 		"@typescript-eslint/parser": "^3.0.2",
-		"eslint": "^7.1.0"
+		"eslint": "^7.1.0",
+		"typescript": "^3.9.4"
 	},
 	"dependencies": {
 		"jsonc-parser": "^0.4.2"

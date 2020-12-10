@@ -139,8 +139,50 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
         this.editor.revealRange(range, vscode.TextEditorRevealType.InCenter);
 	}
 
+	getStixType(node: json.Node): string {
+		const children = node.children;
+		if(children) {
+			const child = children[0]; //FIXME - find type property
+			if(child && child.type == 'property') {
+				const value = child.children[1].value;
+				return value;
+			}
+		}
+		return null;
+	}
+
+	/*getStixID(node: json.Node): string {
+		const children = node.children;
+		if(children) {
+			children.find();//FIND ID PROPERTY
+			const child = children[1];
+			if(child && child.type == 'property') {
+				const value = child.children[1].value;
+				return value;
+			}
+		}
+		return null;
+	}*/
+
 	private getIcon(node: json.Node): any {
+		const stype = this.getStixType(node);
+		if(stype) {
+			return {
+				light: this.context.asAbsolutePath(path.join('resources', 'stix', stype + '-round-flat-300-dpi.png')),
+				dark: this.context.asAbsolutePath(path.join('resources', 'stix', stype + '-round-flat-300-dpi.png'))	
+			};
+		}
+
+		/*if(node.type == 'property') {
+			if(node.children[0].value == 'source_ref') {
+				const bundle = node.parent.parent; //FIXME
+				const bchildren = bundle.children;
+				bchildren.reduce((x,y) => if() { return x } else { })
+			}
+		}*/
+		
 		const nodeType = node.type;
+
 		if (nodeType === 'boolean') {
 			return {
 				light: this.context.asAbsolutePath(path.join('resources', 'light', 'boolean.svg')),
@@ -156,7 +198,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 		if (nodeType === 'number') {
 			return {
 				light: this.context.asAbsolutePath(path.join('resources', 'light', 'number.svg')),
-				dark: this.context.asAbsolutePath(path.join('resources', 'dark', 'number.svg'))
+				dark: this.context.asAbsolutePath(path.join('resources', 'dark', 'number.png'))
 			};
 		}
 		return null;
