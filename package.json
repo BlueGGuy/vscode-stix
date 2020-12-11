@@ -2,7 +2,7 @@
 	"name": "stix",
 	"displayName": "stix",
 	"description": "Stix for Visual Studio Code",
-	"version": "2.0.2",
+	"version": "2.0.3",
 	"publisher": "mattgreen",
 	"homepage": "https://github.com/ZainChen/vscode-json#readme",
 	"bugs": {
