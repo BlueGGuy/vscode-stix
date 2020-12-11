@@ -14,7 +14,7 @@
 	},
 	"license": "MIT",
 	"author": "Matthew Green",
-	"icon": "resources/json-128.png",
+	"icon": "resources/stix-logo.png",
 	"categories": [
 		"Extension Packs",
 		"Other"
@@ -30,7 +30,7 @@
 	"enableProposedApi": true,
 	"main": "./out/extension.js",
 	"activationEvents": [
-		"onView:jsonOutline",
+		"onView:stixOutline",
 		"onLanguage:json"
 	],
 	"contributes": {
@@ -44,43 +44,43 @@
 		"viewsContainers": {
 			"activitybar": [
 				{
-					"id": "json-views",
-					"title": "json",
-					"icon": "./resources/json-500.png"
+					"id": "stix-views",
+					"title": "stix",
+					"icon": "./resources/stix-logo1.png"
 				}
 			]
 		},
 		"views": {
-			"json-views": [
+			"stix-views": [
 				{
-					"id": "jsonOutline",
-					"name": "Please open the json file.(ZainChen)"
+					"id": "stixOutline",
+					"name": "Please open the stix file.(MattGreen)"
 				}
 			]
 		},
 		"menus": {
 			"view/title": [
 				{
-					"command": "jsonOutline.refresh",
-					"when": "view == jsonOutline",
+					"command": "stixOutline.refresh",
+					"when": "view == stixOutline",
 					"group": "navigation"
 				}
 			],
 			"view/item/context": [
 				{
-					"command": "jsonOutline.renameNode",
-					"when": "view == jsonOutline"
+					"command": "stixOutline.renameNode",
+					"when": "view == stixOutline"
 				},
 				{
-					"command": "jsonOutline.refreshNode",
-					"when": "view == jsonOutline",
+					"command": "stixOutline.refreshNode",
+					"when": "view == stixOutline",
 					"group": "inline"
 				}
 			]
 		},
 		"commands": [
 			{
-				"command": "jsonOutline.refresh",
+				"command": "stixOutline.refresh",
 				"title": "Refresh",
 				"icon": {
 					"light": "./resources/light/refresh.svg",
@@ -88,7 +88,7 @@
 				}
 			},
 			{
-				"command": "jsonOutline.refreshNode",
+				"command": "stixOutline.refreshNode",
 				"title": "Refresh",
 				"icon": {
 					"light": "./resources/light/refresh.svg",
@@ -96,7 +96,7 @@
 				}
 			},
 			{
-				"command": "jsonOutline.renameNode",
+				"command": "stixOutline.renameNode",
 				"title": "Rename"
 			}
 		],
@@ -104,27 +104,27 @@
 			{
 				"id": "json",
 				"extensions": [
-					".json"
+					".stix.json"
 				],
 				"aliases": [
-					"Json"
+					"Stix"
 				]
 			}
 		],
 		"configuration": [
 			{
 				"type": "object",
-				"title": "JSON-zain",
+				"title": "stix",
 				"properties": {
-					"JSON-zain.author.ZainChen": {
+					"Stix.author.MattGreen": {
 						"type": "string",
-						"default": "Welcome to vscode-json.",
-						"description": "Json for Visual Studio Code"
+						"default": "Welcome to stix-json.",
+						"description": "Stix for Visual Studio Code"
 					},
-					"JSON-zain.json.autorefresh": {
+					"Stix.json.autorefresh": {
 						"type": "boolean",
-						"default": false,
-						"description": "Whether to update the menu in real time based on the contents of the json file!"
+						"default": true,
+						"description": "Whether to update the menu in real time based on the contents of the stix file!"
 					}
 				}
 			}

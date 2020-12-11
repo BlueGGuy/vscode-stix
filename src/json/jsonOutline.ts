@@ -142,10 +142,9 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 	getStixType(node: json.Node): string {
 		const children = node.children;
 		if(children) {
-			const child = children[0]; //FIXME - find type property
-			if(child && child.type == 'property') {
-				const value = child.children[1].value;
-				return value;
+			const type = children.find( x => x.type == 'property' && x.children[0].value == "type" );
+			if(type) {
+				return type.children[1].value;
 			}
 		}
 		return null;
