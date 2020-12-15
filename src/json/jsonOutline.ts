@@ -212,7 +212,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 			if (node.type === 'array') {
 				return prefix + ': [ '+ this.getNodeChildrenCount(node) +' ]';
 			}
-			return prefix + ':' + node.value.toString();
+			return prefix + ': ' + node.value.toString();
 		}
 		else {
 			const property = node.parent.children[0].value.toString();
