@@ -1,6 +1,7 @@
 import * as vscode from 'vscode';
 import * as json from 'jsonc-parser';
 import * as path from 'path';
+import * as fs from 'fs';
 
 export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 
@@ -119,8 +120,20 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 		const path = json.getLocation(this.text, offset).path;
 		const valueNode = json.findNodeAtLocation(this.tree, path);
 		if (valueNode) {
-			const hasChildren = valueNode.type === 'object' || valueNode.type === 'array';
-			const treeItem: vscode.TreeItem = new vscode.TreeItem(this.getLabel(valueNode), hasChildren ? valueNode.type === 'object' ? vscode.TreeItemCollapsibleState.Expanded : vscode.TreeItemCollapsibleState.Collapsed : vscode.TreeItemCollapsibleState.None);
+			let state = vscode.TreeItemCollapsibleState.None;
+			if (valueNode.type === 'object') {
+				state = vscode.TreeItemCollapsibleState.Expanded;
+			}
+			else if (valueNode.type === 'array') {
+				if (valueNode.children.length === 1) {
+					state = vscode.TreeItemCollapsibleState.Expanded;
+				}
+				else {
+					state = vscode.TreeItemCollapsibleState.Collapsed;
+				}
+			}
+			let xlabel = this.getLabel(valueNode);
+			const treeItem: vscode.TreeItem = new vscode.TreeItem(xlabel, state);
 			treeItem.command = {
 				command: 'extension.openJsonSelection',
 				title: '',
@@ -166,10 +179,20 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 	private getIcon(node: json.Node): any {
 		const stype = this.getStixType(node);
 		if(stype) {
-			return {
+			let x = {
 				light: this.context.asAbsolutePath(path.join('resources', 'stix', stype + '-round-flat-300-dpi.png')),
 				dark: this.context.asAbsolutePath(path.join('resources', 'stix', stype + '-round-flat-300-dpi.png'))	
 			};
+			if (!fs.existsSync(x.dark)) {
+				x.dark = x.light;
+			}
+			if (!fs.existsSync(x.dark)) {
+				x = {
+					light: this.context.asAbsolutePath(path.join('resources', 'stix', 'x-round-flat-300-dpi.png')),
+					dark: this.context.asAbsolutePath(path.join('resources', 'stix', 'x-round-flat-300-dpi.png'))	
+				}
+			}
+			return x;
 		}
 
 		/*if(node.type == 'property') {
@@ -197,36 +220,48 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 		if (nodeType === 'number') {
 			return {
 				light: this.context.asAbsolutePath(path.join('resources', 'light', 'number.svg')),
-				dark: this.context.asAbsolutePath(path.join('resources', 'dark', 'number.png'))
+				dark: this.context.asAbsolutePath(path.join('resources', 'dark', 'number.svg'))
 			};
 		}
 		return null;
 	}
 
-	private getLabel(node: json.Node): string {
+	private getLabel(node: json.Node) {
+		let s:string = "";
+		let hl = [];
 		if (node.parent.type === 'array') {
 			const prefix = node.parent.children.indexOf(node).toString();
 			if (node.type === 'object') {
-				return prefix + ': { '+ this.getNodeChildrenCount(node) +' }';
+				s = prefix + ': { '+ this.getNodeChildrenCount(node) +' }';
 			}
-			if (node.type === 'array') {
-				return prefix + ': [ '+ this.getNodeChildrenCount(node) +' ]';
+			else if (node.type === 'array') {
+				s = prefix + ': [ '+ this.getNodeChildrenCount(node) +' ]';
 			}
-			return prefix + ': ' + node.value.toString();
+			else {
+				s = prefix + ': ' + node.value.toString();
+			}
 		}
 		else {
 			const property = node.parent.children[0].value.toString();
 			if (node.type === 'array' || node.type === 'object') {
 				if (node.type === 'object') {
-					return '{ '+ this.getNodeChildrenCount(node) +' } ' + property;
+					s = '{ '+ this.getNodeChildrenCount(node) +' } ' + property;
 				}
-				if (node.type === 'array') {
-					return '[ '+ this.getNodeChildrenCount(node) +' ] ' + property;
+				else if (node.type === 'array') {
+					s = '[ '+ this.getNodeChildrenCount(node) +' ] ' + property;
 				}
 			}
-			const value = this.editor.document.getText(new vscode.Range(this.editor.document.positionAt(node.offset), this.editor.document.positionAt(node.offset + node.length)));
-			return `${property}: ${value}`;
+			else {
+				const value = this.editor.document.getText(new vscode.Range(this.editor.document.positionAt(node.offset), this.editor.document.positionAt(node.offset + node.length)));
+				s = `${property}: ${value}`;
+				if (property === "id" || property === "type") {
+					// mandatory
+					hl = [[0, property.length]];
+				}
+			}
 		}
+		let xlabel : vscode.TreeItemLabel = { label: s, highlights: hl};
+		return xlabel;
 	}
 
 	private getNodeChildrenCount(node: json.Node): string {
