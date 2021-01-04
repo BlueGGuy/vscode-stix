@@ -2,15 +2,15 @@
 	"name": "stix",
 	"displayName": "stix",
 	"description": "Stix for Visual Studio Code",
-	"version": "2.0.3",
+	"version": "2.0.4",
 	"publisher": "mattgreen",
-	"homepage": "https://github.com/ZainChen/vscode-json#readme",
+	"homepage": "https://github.com/BlueGGuy/vscode-stix#readme",
 	"bugs": {
-		"url": "https://github.com/ZainChen/vscode-json/issues"
+		"url": "https://github.com/BlueGGuy/vscode-stix/issues"
 	},
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/ZainChen/vscode-json"
+		"url": "https://github.com/BlueGGuy/vscode-stix"
 	},
 	"license": "MIT",
 	"author": "Matthew Green",
