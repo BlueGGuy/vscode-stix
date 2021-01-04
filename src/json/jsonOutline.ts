@@ -132,8 +132,8 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 					state = vscode.TreeItemCollapsibleState.Collapsed;
 				}
 			}
-			let xlabel = this.getLabel(valueNode);
-			const treeItem: vscode.TreeItem = new vscode.TreeItem(xlabel, state);
+			const xlabel = this.getLabel(valueNode);
+			const treeItem: vscode.TreeItem = new vscode.TreeItem(xlabel.label, state);
 			treeItem.command = {
 				command: 'extension.openJsonSelection',
 				title: '',
@@ -190,7 +190,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 				x = {
 					light: this.context.asAbsolutePath(path.join('resources', 'stix', 'x-round-flat-300-dpi.png')),
 					dark: this.context.asAbsolutePath(path.join('resources', 'stix', 'x-round-flat-300-dpi.png'))	
-				}
+				};
 			}
 			return x;
 		}
@@ -227,7 +227,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 	}
 
 	private getLabel(node: json.Node) {
-		let s:string = "";
+		let s = "";
 		let hl = [];
 		if (node.parent.type === 'array') {
 			const prefix = node.parent.children.indexOf(node).toString();
@@ -260,7 +260,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 				}
 			}
 		}
-		let xlabel : vscode.TreeItemLabel = { label: s, highlights: hl};
+		const xlabel : vscode.TreeItemLabel = { label: s, highlights: hl};
 		return xlabel;
 	}
 

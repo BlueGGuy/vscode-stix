@@ -3,7 +3,7 @@
 	"displayName": "stix",
 	"description": "Stix for Visual Studio Code",
 	"version": "2.0.4",
-	"publisher": "mattgreen",
+	"publisher": "MatthewGreen",
 	"homepage": "https://github.com/BlueGGuy/vscode-stix#readme",
 	"bugs": {
 		"url": "https://github.com/BlueGGuy/vscode-stix/issues"
