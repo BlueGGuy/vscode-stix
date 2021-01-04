@@ -2,7 +2,7 @@
 	"name": "stix",
 	"displayName": "stix",
 	"description": "Stix for Visual Studio Code",
-	"version": "2.0.4",
+	"version": "2.0.5",
 	"publisher": "MatthewGreen",
 	"homepage": "https://github.com/BlueGGuy/vscode-stix#readme",
 	"bugs": {
@@ -27,7 +27,6 @@
 	"engines": {
 		"vscode": "^1.46.0"
 	},
-	"enableProposedApi": true,
 	"main": "./out/extension.js",
 	"activationEvents": [
 		"onView:stixOutline",
