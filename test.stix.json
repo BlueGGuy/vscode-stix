@@ -7,6 +7,7 @@
             "spec_version": "2.1",
             "id": "threat-actor--56f3f0db-b5d5-431c-ae56-c18f02caf500",
             "created": "2016-08-08T15:50:10.983Z",
+            "number": 1,
             "modified": "2016-08-08T15:50:10.983Z",
             "name": "Fake BPP (Branistan Peoples Party)",
             "threat_actor_types": [
@@ -150,7 +151,7 @@
             "target_ref": "threat-actor--56f3f0db-b5d5-431c-ae56-c18f02caf500"
         },
         {
-            "type": "relationship",
+            "type": "relationshipx",
             "spec_version": "2.1",
             "id": "relationship--5047c2c0-524b-4afd-9cd6-e197efe59495",
             "created": "2020-02-29T17:41:44.939Z",
@@ -170,7 +171,7 @@
             "target_ref": "intrusion-set--ed69450a-f067-4b51-9ba2-c4616b9a6713"
         },
         {
-            "type": "relationship",
+            "type": "relationshipx",
             "spec_version": "2.1",
             "id": "relationship--c171fd27-2a8a-42b7-8293-34016b70c1c8",
             "created": "2020-02-29T17:41:44.939Z",
