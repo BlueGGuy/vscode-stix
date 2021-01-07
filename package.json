@@ -53,7 +53,7 @@
 			"stix-views": [
 				{
 					"id": "stixOutline",
-					"name": "Please open the stix file.(MattGreen)"
+					"name": "Please open a stix file (extension .stix.json)"
 				}
 			]
 		},

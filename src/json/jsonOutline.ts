@@ -67,6 +67,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 			vscode.commands.executeCommand('setContext', 'jsonOutlineEnabled', false);
 		}
 		// 切换文件，刷新
+		// google translate : Switch file, refresh
 		this.refresh();
 	}
 
@@ -149,6 +150,7 @@ export class JsonOutlineProvider implements vscode.TreeDataProvider<number> {
 	select(range: vscode.Range) {
 		this.editor.selection = new vscode.Selection(range.start, range.end);
 		// 编辑窗跳转到指定范围
+		// google translate : Edit window jump to the specified range
         this.editor.revealRange(range, vscode.TextEditorRevealType.InCenter);
 	}
 
